@@ -1,9 +1,6 @@
 package by.flameksandr.aspects;
 
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Aspect
@@ -21,6 +18,11 @@ public class HelloServiceAspect {
     @AfterReturning("execution(* by.flameksandr.services.HelloService.hello(..))")
     public void afterReturning() {
         System.out.println("C");
+    }
+
+    @AfterThrowing("execution(* by.flameksandr.services.HelloService.hello(..))")
+    public void afterThrowing() {
+        System.out.println("Boo!");
     }
 
 }
