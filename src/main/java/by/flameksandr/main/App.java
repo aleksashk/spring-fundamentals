@@ -1,6 +1,7 @@
 package by.flameksandr.main;
 
 import by.flameksandr.config.ProjectConfig;
+import by.flameksandr.services.HelloService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -8,8 +9,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
  */
 public class App {
     public static void main(String[] args) {
-        try (var c = new AnnotationConfigApplicationContext(ProjectConfig.class)){
-
+        try (var c = new AnnotationConfigApplicationContext(ProjectConfig.class)) {
+            HelloService service = c.getBean(HelloService.class);
+            String result = service.hello("John");
+            System.out.println(result);
         }
     }
 }
