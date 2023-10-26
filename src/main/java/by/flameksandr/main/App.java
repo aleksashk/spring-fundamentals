@@ -11,7 +11,8 @@ public class App {
     public static void main(String[] args) {
         try (var c = new AnnotationConfigApplicationContext(ProjectConfig.class)) {
             HelloService service = c.getBean(HelloService.class);
-            service.hello("John");
+            String res = service.hello("John");
+            System.out.println("Result is " + res);
         }
     }
 }

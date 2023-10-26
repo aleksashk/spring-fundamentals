@@ -1,28 +1,18 @@
 package by.flameksandr.aspects;
 
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
 public class HelloServiceAspect {
-    @Before("execution(* by.flameksandr.services.HelloService.hello(..))")
-    public void before() {
-        System.out.println("A");
-    }
 
-    @After("execution(* by.flameksandr.services.HelloService.hello(..))")
-    public void after() {
-        System.out.println("B");
-    }
-    @AfterReturning("execution(* by.flameksandr.services.HelloService.hello(..))")
-    public void afterReturning() {
-        System.out.println("C");
-    }
-
-    @AfterThrowing("execution(* by.flameksandr.services.HelloService.hello(..))")
-    public void afterThrowing() {
-        System.out.println("Boo!");
+    @Around("execution(* by.flameksandr.services.HelloService.hello(..))")
+    public Object around(ProceedingJoinPoint joinPoint) {
+        System.out.println("Something else!!");
+        return "Something else:)";
     }
 
 }
